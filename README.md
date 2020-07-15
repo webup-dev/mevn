@@ -1,4 +1,4 @@
-# vue3-cinema
+# MongoDB, Express, Vue 3, Node. Cinema
 
 ## Project setup
 ```

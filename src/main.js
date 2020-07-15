@@ -1,3 +1,4 @@
+import "@/assets/style.scss";
 import {createApp} from "vue";
 
 createApp({
@@ -5,9 +6,16 @@ createApp({
         "movie-list": {
             template: `
                 <div id="movie-list">
-                    Movie List
+                    <div v-for="movie in movies">{{ movie.title }}</div>
                 </div>
-            `
+            `,
+            data: () => ({
+                movies: [
+                    { title: "Pulp Fiction" },
+                    { title: "Home Alone" },
+                    { title: "Austin Powers" }
+                ]
+            })
         },
         "movie-filter": {
             template: `
