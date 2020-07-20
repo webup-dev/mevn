@@ -12,25 +12,33 @@ createApp({
             `,
             data: () => ({
                 movies: [
-                    { title: "Pulp Fiction" },
-                    { title: "Home Alone" },
-                    { title: "Austin Powers" }
+                    {title: "Pulp Fiction"},
+                    {title: "Home Alone"},
+                    {title: "Austin Powers"}
                 ]
             })
         },
         "movie-filter": {
             template: `
-              <div id="movie-filter">
-                  <h2>Filter Results</h2>
-                  <check-filter v-for="genre in genres"></check-filter>
-              </div>
+                <div id="movie-filter">
+                    <h2>Filter Results</h2>
+                    <div class="filter-group">
+                        <check-filter
+                                v-for="genre in genres"
+                                v-bind:title="genre"
+                        ></check-filter>
+                    </div>
+                </div>
             `,
             data: () => ({
                 genres
             }),
             components: {
                 "check-filter": {
-                    template: `<div>Check filter</div>`
+                    props: {
+                        title: String
+                    },
+                    template: `<span class="check-filter-title">{{ title }}</span>`
                 }
             }
         }
