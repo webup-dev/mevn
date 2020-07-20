@@ -26,6 +26,7 @@ createApp({
                         <check-filter
                                 v-for="genre in genres"
                                 v-bind:title="genre"
+                                v-on:check-filter="checkFilter"
                         ></check-filter>
                     </div>
                 </div>
@@ -38,9 +39,10 @@ createApp({
                     props: {
                         title: String
                     },
+                    emits: ["check-filter"],
                     template: `
                         <div
-                                v-on:click="checked = !checked"
+                                v-on:click="checkFilter"
                                 v-bind:class="{ 'check-filter': true, active: checked }"
                         >
                             <span class="checkbox"></span>
@@ -49,7 +51,18 @@ createApp({
                     `,
                     data: () => ({
                         checked: false
-                    })
+                    }),
+                    methods: {
+                        checkFilter() {
+                            this.checked = !this.checked;
+                            this.$emit("check-filter", this.checked, this.title);
+                        }
+                    }
+                }
+            },
+            methods: {
+                checkFilter() {
+                    console.log("check-filter received");
                 }
             }
         }
