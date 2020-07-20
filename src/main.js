@@ -19,6 +19,7 @@ createApp({
             })
         },
         "movie-filter": {
+            emits: ["check-filter"],
             template: `
                 <div id="movie-filter">
                     <h2>Filter Results</h2>
@@ -61,10 +62,15 @@ createApp({
                 }
             },
             methods: {
-                checkFilter() {
-                    console.log("check-filter received");
+                checkFilter(checked, title) {
+                    this.$emit("check-filter", checked, title);
                 }
             }
+        }
+    },
+    methods: {
+        checkFilter(checked, title) {
+            console.log(checked, title);
         }
     }
 }).mount("#app");
